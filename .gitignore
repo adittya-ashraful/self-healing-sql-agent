@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[oc]
+*.egg-info
+build/
+dist/
+docker-compose.yml
+uv.lock
+self-healing-sql-agent/ruff.toml
+# Virtual environments
+.venv
+
+# Tooling caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Secrets
+.env

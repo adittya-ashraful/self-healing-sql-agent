@@ -1,0 +1,54 @@
+[project]
+name = "self-healing-sql-agent"
+version = "0.1.0"
+description = "A streaming, self-healing Text-to-SQL agent for PostgreSQL built with LangGraph, FastAPI and asyncpg."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "asyncpg==0.32.0",
+    "fastapi==0.162.2",
+    "langchain==1.4.9",
+    "langchain-core==1.7.7",
+    "langchain-openai==1.7.4",
+    "langgraph==1.2.20",
+    "pydantic==2.14.3",
+    "pydantic-settings==2.16.2",
+    "sqlalchemy[asyncio]==2.1.8",
+    "sqlglot==30.30.0",
+    "uvicorn[standard]==0.54.0",
+]
+
+[project.optional-dependencies]
+anthropic = [
+    "langchain-anthropic==1.7.10",
+]
+deepseek = [
+    "langchain-deepseek==1.1.1",
+]
+google = [
+    "langchain-google-genai==4.4.3",
+]
+
+[tool.uv]
+package = false
+
+[dependency-groups]
+dev = [
+    "httpx==0.28.1",
+    "pytest==9.2.0",
+    "pytest-asyncio==1.4.1.post1",
+    "ruff==0.17.1",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "session"
+asyncio_default_test_loop_scope = "session"
+testpaths = ["tests"]
+filterwarnings = [
+    # Third-party deprecation noise on Python 3.14 (not our code).
+    "ignore:'asyncio.iscoroutinefunction' is deprecated:DeprecationWarning",
+]
+markers = [
+    "integration: needs a reachable Postgres seeded with db/init.sql (DATABASE_URL)",
+]
