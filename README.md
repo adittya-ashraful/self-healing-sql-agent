@@ -120,7 +120,10 @@ Every query passes through five independent safety layers in `db/init.sql` and `
 ```bash
 cd self-healing-sql-agent
 
-# 1.Configure environment variables
+# 1. Start PostgreSQL 16 and automatically run db/init.sql
+docker compose up -d
+
+# 2.Configure environment variables
 cp .env.example .env
 # Edit .env and set LLM_API_KEY (and optionally LLM_PROVIDER / LLM_MODEL)
 ```
